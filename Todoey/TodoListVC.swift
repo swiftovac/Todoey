@@ -12,10 +12,14 @@ class TodoListVC: UITableViewController {
     
     
     var todoListArray = ["Taks list", "Shopping list", "Learing list"]
+    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let items = defaults.array(forKey: "TodoListArray") as? [String] {
+            todoListArray = items
+        }
     }
     
     
@@ -51,6 +55,42 @@ class TodoListVC: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    
+    
+    
+    @IBAction func addItemTapped(_ sender: UIBarButtonItem) {
+        
+        var txtField = UITextField()
+        
+        let alert = UIAlertController(title: "Add new to do list", message: nil, preferredStyle: .alert)
+        
+        
+        alert.addTextField { (textField) in
+            
+            textField.placeholder = "Enter new to do list"
+            txtField = textField
+   
+        }
+        
+        let action = UIAlertAction(title: "Add item", style: .default) { (action) in
+            
+            self.todoListArray.append(txtField.text!)
+            
+            self.defaults.setValue(self.todoListArray, forKey: "TodoListArray")
+            
+            self.tableView.reloadData()
+            
+        }
+        
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+        
+        
+        
+        
+    }
+    
 
 
 }
