@@ -12,6 +12,8 @@
 		AA7A834321BBE6BD009487EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA7A834121BBE6BD009487EA /* Main.storyboard */; };
 		AA7A834521BBE6BF009487EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA7A834421BBE6BF009487EA /* Assets.xcassets */; };
 		AA7A834821BBE6BF009487EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA7A834621BBE6BF009487EA /* LaunchScreen.storyboard */; };
+		AA7A835121BBF05E009487EA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A835021BBF05E009487EA /* Item.swift */; };
+		AAD0AF3721BEF305004BA648 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAD0AF3521BEF305004BA648 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		AA7A834421BBE6BF009487EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA7A834721BBE6BF009487EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA7A834921BBE6BF009487EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA7A835021BBF05E009487EA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		AAD0AF3621BEF305004BA648 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,40 @@
 		AA7A833C21BBE6BD009487EA /* Todoey */ = {
 			isa = PBXGroup;
 			children = (
-				AA7A833D21BBE6BD009487EA /* AppDelegate.swift */,
-				AA7A833F21BBE6BD009487EA /* TodoListVC.swift */,
-				AA7A834121BBE6BD009487EA /* Main.storyboard */,
-				AA7A834421BBE6BF009487EA /* Assets.xcassets */,
 				AA7A834621BBE6BF009487EA /* LaunchScreen.storyboard */,
+				AA7A835321BBF0A8009487EA /* View */,
+				AA7A835221BBF097009487EA /* Controller */,
+				AA7A834F21BBF04A009487EA /* Model */,
+				AA7A833D21BBE6BD009487EA /* AppDelegate.swift */,
+				AA7A834421BBE6BF009487EA /* Assets.xcassets */,
 				AA7A834921BBE6BF009487EA /* Info.plist */,
 			);
 			path = Todoey;
+			sourceTree = "<group>";
+		};
+		AA7A834F21BBF04A009487EA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AAD0AF3521BEF305004BA648 /* DataModel.xcdatamodeld */,
+				AA7A835021BBF05E009487EA /* Item.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AA7A835221BBF097009487EA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AA7A833F21BBE6BD009487EA /* TodoListVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AA7A835321BBF0A8009487EA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AA7A834121BBE6BD009487EA /* Main.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +166,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA7A834021BBE6BD009487EA /* TodoListVC.swift in Sources */,
+				AAD0AF3721BEF305004BA648 /* DataModel.xcdatamodeld in Sources */,
+				AA7A835121BBF05E009487EA /* Item.swift in Sources */,
 				AA7A833E21BBE6BD009487EA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +368,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AAD0AF3521BEF305004BA648 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AAD0AF3621BEF305004BA648 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = AAD0AF3621BEF305004BA648 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AA7A833221BBE6BD009487EA /* Project object */;
 }

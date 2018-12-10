@@ -7,19 +7,27 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoListVC: UITableViewController {
     
     
-    var todoListArray = ["Taks list", "Shopping list", "Learing list"]
-    let defaults = UserDefaults.standard
+    var todoListArray = [Items]()
+    
+ 
+    
+
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let items = defaults.array(forKey: "TodoListArray") as? [String] {
-            todoListArray = items
-        }
+       
+        loadItems()
+ 
+        
     }
     
     
@@ -34,7 +42,11 @@ class TodoListVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "toDoItemCell", for: indexPath)
         
-        cell.textLabel?.text = todoListArray[indexPath.row]
+        var item = todoListArray[indexPath.row]
+ 
+        cell.textLabel?.text = item.title
+        cell.accessoryType = item.done ? .checkmark: .none
+
         return cell
         
     }
@@ -46,13 +58,9 @@ class TodoListVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark{
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        }else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
-        
+        todoListArray[indexPath.row].done = !todoListArray[indexPath.row].done
+        tableView.reloadData()
+ 
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -74,10 +82,15 @@ class TodoListVC: UITableViewController {
         }
         
         let action = UIAlertAction(title: "Add item", style: .default) { (action) in
+
+            var item = Items(context:self.context)
+            item.title = txtField.text!
+            item.done = false
             
-            self.todoListArray.append(txtField.text!)
+            self.todoListArray.append(item)
             
-            self.defaults.setValue(self.todoListArray, forKey: "TodoListArray")
+            self.saveItems()
+            
             
             self.tableView.reloadData()
             
@@ -86,9 +99,33 @@ class TodoListVC: UITableViewController {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
         
+    }
+    
+    
+    func saveItems() {
+ 
+        do{
+            
+            try context.save()
+            
+        }catch {
+            
+            print("Error saving item\(error)")
+            
+        }
         
+    }
+    
+    
+    func loadItems(with request: NSFetchRequest<Items> = Items.fetchRequest()) {
         
-        
+        do {
+         try todoListArray = context.fetch(request)
+         
+        } catch{
+            print("Error fetching data\(error)")
+        }
+ 
     }
     
 
